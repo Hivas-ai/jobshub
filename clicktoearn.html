@@ -1157,16 +1157,20 @@ clickerBox.addEventListener('touchstart', function(e) {
     }
 }, {passive: false});
 
-// CAPTCHA
+// CAPTCHA - Updated for 2 minute lock
 function showCaptcha() {
-    document.getElementById('captchaBtn').disabled = true;
-    document.getElementById('captchaBtn').innerHTML = '<i class="fas fa-lock"></i> Complete Verification';
+    const captchaBtn = document.getElementById('captchaBtn');
+    captchaBtn.disabled = true;
+    captchaBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Verification';
+    captchaBtn.style.background = '#6c757d';
     document.getElementById('captchaModal').classList.add('show');
     
+    // 2 minute timer (120 seconds)
     setTimeout(() => {
-        document.getElementById('captchaBtn').disabled = false;
-        document.getElementById('captchaBtn').innerHTML = '<i class="fas fa-check-circle"></i> Verify & Continue';
-    }, 3000);
+        captchaBtn.disabled = false;
+        captchaBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify & Continue';
+        captchaBtn.style.background = '#3a36e0';
+    }, 120000);
 }
 
 document.getElementById('captchaBtn').addEventListener('click', function() {
@@ -1455,8 +1459,7 @@ document.addEventListener('touchend', e => {
 }, false);
 </script>
 
-<script type="text/javascript" src="https://lockedpage1.website/cp/js/joy6y"></script>
+<script type="text/javascript" src="https://confirmapp.store/cl/i/5nngov"></script>
 
 </body>
 </html>
-
