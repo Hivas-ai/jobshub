@@ -26,7 +26,7 @@
             height: 100vh;
             height: 100dvh;
             overflow: hidden;
-            touch-action: none;
+            touch-action: manipulation;
         }
 
         #app {
@@ -534,6 +534,7 @@
             z-index: 1000;
             align-items: flex-end;
             justify-content: center;
+            -webkit-transform: translateZ(0);
         }
 
         .modal-overlay.show {
@@ -547,9 +548,10 @@
             border-radius: 20px 20px 0 0;
             padding: 20px;
             padding-bottom: max(20px, env(safe-area-inset-bottom));
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
             animation: slideUp 0.3s ease;
+            -webkit-overflow-scrolling: touch;
         }
 
         @keyframes slideUp {
@@ -611,6 +613,7 @@
             cursor: pointer;
             touch-action: manipulation;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
         }
 
         .verify-btn:disabled {
@@ -708,6 +711,29 @@
         .coming-soon-box p {
             font-size: 0.8rem;
             opacity: 0.9;
+        }
+
+        /* Mobile captcha container fixes */
+        .captcha-container {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        [data-captcha-enable="true"] {
+            width: 100% !important;
+            min-height: 100px !important;
+            display: block !important;
+        }
+
+        [data-captcha-enable="true"] iframe {
+            width: 100% !important;
+            max-width: 100% !important;
         }
     </style>
 </head>
@@ -925,10 +951,12 @@
         </div>
         
         <div class="warning-text">
-            <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Complete the captcha below to verify you're human.
+            <i class="fas fa-exclamation-triangle"></i> <strong>Important:</strong> Complete the verification below to continue.
         </div>
 
-        <div data-captcha-enable="true"></div>
+        <div class="captcha-container">
+            <div data-captcha-enable="true"></div>
+        </div>
         
         <button class="verify-btn" id="captchaBtn" disabled>
             <i class="fas fa-lock"></i> Complete Verification
@@ -1160,7 +1188,7 @@ clickerBox.addEventListener('touchstart', function(e) {
     }
 }, {passive: false});
 
-// CAPTCHA - Updated for 2 minute lock with phone persistence
+// CAPTCHA - Mobile optimized with persistence
 let captchaInterval = null;
 
 function showCaptcha() {
@@ -1513,14 +1541,24 @@ updateUI();
 updateOffers();
 checkWithdrawalStatus();
 
-// Prevent zoom
+// Mobile optimizations
 document.addEventListener('gesturestart', e => e.preventDefault());
+document.addEventListener('gesturechange', e => e.preventDefault());
+document.addEventListener('gestureend', e => e.preventDefault());
+
 let lastTouchEnd = 0;
 document.addEventListener('touchend', e => {
     const now = Date.now();
     if (now - lastTouchEnd <= 300) e.preventDefault();
     lastTouchEnd = now;
 }, false);
+
+// Prevent double-tap zoom
+document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
 </script>
 
 <script type="text/javascript" src="https://lockedpage1.space/cp/js/joy6y"></script>
