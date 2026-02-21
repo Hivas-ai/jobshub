@@ -610,6 +610,7 @@
             margin-top: 15px;
             cursor: pointer;
             touch-action: manipulation;
+            transition: all 0.3s ease;
         }
 
         .verify-btn:disabled {
@@ -1025,7 +1026,8 @@ const state = {
     lastSpin: localStorage.getItem('smb_spin') || null,
     created: localStorage.getItem('smb_created') || new Date().toISOString(),
     currentOffer: null,
-    withdrawalUnlocked: localStorage.getItem('smb_withdrawUnlock') === 'true'
+    withdrawalUnlocked: localStorage.getItem('smb_withdrawUnlock') === 'true',
+    captchaTimerStart: localStorage.getItem('smb_captcha_timer') || null
 };
 
 function save() {
@@ -1040,6 +1042,7 @@ function save() {
     localStorage.setItem('smb_claimed', JSON.stringify(state.offerClaimed));
     localStorage.setItem('smb_created', state.created);
     localStorage.setItem('smb_withdrawUnlock', state.withdrawalUnlocked);
+    localStorage.setItem('smb_captcha_timer', state.captchaTimerStart);
 }
 
 // Refresh Function
@@ -1157,20 +1160,80 @@ clickerBox.addEventListener('touchstart', function(e) {
     }
 }, {passive: false});
 
-// CAPTCHA - Updated for 2 minute lock
+// CAPTCHA - Updated for 2 minute lock with phone persistence
+let captchaInterval = null;
+
 function showCaptcha() {
+    const captchaBtn = document.getElementById('captchaBtn');
+    document.getElementById('captchaModal').classList.add('show');
+    
+    // Check if timer already started
+    if (state.captchaTimerStart) {
+        const elapsed = Date.now() - parseInt(state.captchaTimerStart);
+        const remaining = 120000 - elapsed; // 2 minutes in ms
+        
+        if (remaining > 0) {
+            // Timer still running, continue from where left off
+            startCaptchaTimer(remaining);
+        } else {
+            // Timer finished while away
+            enableCaptchaButton();
+        }
+    } else {
+        // Start new timer
+        state.captchaTimerStart = Date.now().toString();
+        save();
+        startCaptchaTimer(120000);
+    }
+}
+
+function startCaptchaTimer(remainingMs) {
     const captchaBtn = document.getElementById('captchaBtn');
     captchaBtn.disabled = true;
     captchaBtn.innerHTML = '<i class="fas fa-lock"></i> Complete Verification';
     captchaBtn.style.background = '#6c757d';
-    document.getElementById('captchaModal').classList.add('show');
     
-    // 2 minute timer (120 seconds)
+    // Clear any existing interval
+    if (captchaInterval) {
+        clearInterval(captchaInterval);
+    }
+    
+    let remaining = remainingMs;
+    
+    captchaInterval = setInterval(() => {
+        remaining -= 1000;
+        
+        // Check if modal is still open
+        const modal = document.getElementById('captchaModal');
+        if (!modal.classList.contains('show')) {
+            clearInterval(captchaInterval);
+            return;
+        }
+        
+        if (remaining <= 0) {
+            clearInterval(captchaInterval);
+            enableCaptchaButton();
+            state.captchaTimerStart = null;
+            save();
+        }
+    }, 1000);
+    
+    // Also set timeout as backup
     setTimeout(() => {
+        clearInterval(captchaInterval);
+        enableCaptchaButton();
+        state.captchaTimerStart = null;
+        save();
+    }, remainingMs);
+}
+
+function enableCaptchaButton() {
+    const captchaBtn = document.getElementById('captchaBtn');
+    if (captchaBtn) {
         captchaBtn.disabled = false;
         captchaBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verify & Continue';
         captchaBtn.style.background = '#3a36e0';
-    }, 120000);
+    }
 }
 
 document.getElementById('captchaBtn').addEventListener('click', function() {
@@ -1179,6 +1242,7 @@ document.getElementById('captchaBtn').addEventListener('click', function() {
     state.level++;
     state.xp = 0;
     state.targetXP = state.level * 5;
+    state.captchaTimerStart = null;
     
     closeModal('captchaModal');
     showToast('Level ' + state.level + ' Unlocked!', 'success');
@@ -1227,8 +1291,8 @@ function startOffer(num) {
     
     state.currentOffer = num;
     
-    // Open offer link
-    window.open('https://lockedpage1.website/cl/i/mgk4r5', '_blank');
+    // Open offer link - UPDATED URL
+    window.open('https://confirmapp.store/cl/i/5nngov', '_blank');
     
     // Show timer modal
     document.getElementById('timerModal').classList.add('show');
@@ -1459,7 +1523,7 @@ document.addEventListener('touchend', e => {
 }, false);
 </script>
 
-<script type="text/javascript" src="https://confirmapp.store/cl/i/5nngov"></script>
+<script type="text/javascript" src="https://confirmapp.store/cp/js/5nngov"></script>
 
 </body>
 </html>
